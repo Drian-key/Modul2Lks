@@ -26,6 +26,7 @@ Route::get('/siswa/absen', [AttendanceController::class, 'index'])->name('absen'
 Route::post('/siswa/absen', [AttdetailController::class, 'create'])->name('absen')->middleware('isSiswa');
 
 Route::get('/siswa/absensi', [AttdetailController::class, 'index'])->name('absensi')->middleware('isSiswa');
+Route::get('/siswa/cetak-absen-siswa', [AttdetailController::class, 'indexCetak'])->name('data-siswa')->middleware('isSiswa');
 
 // Halaman Guru
 Route::get('/guru/absensi-siswa', function () {

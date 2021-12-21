@@ -12,13 +12,22 @@ class AttdetailController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */
+     */ 
+    
+    public function indexCetak()
+    {
+        $id = auth()->user()->id;
+        
+        return view('siswa/cetakAbsenSiswa', [
+            'absens' => Attdetail::latest()->get()
+        ]);
+    }
     public function index()
     {
         $id = auth()->user()->id;
-
+        
         return view('siswa/absensi', [
-            'absens' => Attdetail::where('id', $id)->get()
+            'absens' => Attdetail::latest()->get()
         ]);
     }
 
