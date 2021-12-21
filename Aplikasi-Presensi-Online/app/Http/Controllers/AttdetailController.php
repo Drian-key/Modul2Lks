@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attdetail;
 use Illuminate\Http\Request;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class AttdetailController extends Controller
 {
@@ -13,7 +15,11 @@ class AttdetailController extends Controller
      */
     public function index()
     {
-        //
+        $id = auth()->user()->id;
+
+        return view('siswa/absensi', [
+            'absens' => Attdetail::where('id', $id)->get()
+        ]);
     }
 
     /**
@@ -21,9 +27,17 @@ class AttdetailController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $validasiData = $request->validate([
+            'attendance_id' => 'required',
+            'student_id' => 'required',
+            'attstatus' => 'required',
+        ]);
+        
+        Attdetail::create($validasiData);
+
+        return redirect('siswa/absensi')->with('berhasilAbsen', 'absensiisi');
     }
 
     /**

@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AttdetailController;
 use App\Http\Controllers\AttendanceController;
+use App\Models\Attdetail;
 use App\Models\Attendance;
 use Illuminate\Support\Facades\Route;
 
@@ -20,15 +22,15 @@ Route::get('/', function () {
 });
 
 // Halaman siswa
-Route::get('/siswa/absen', function () {
-    return view('siswa/absen');
-})->name('absen')->middleware('isSiswa');
-Route::get('/siswa/absensi', function () {
-    return view('siswa/absensi');
-})->name('absensi')->middleware('isSiswa');
+Route::get('/siswa/absen', [AttendanceController::class, 'index'])->name('absen')->middleware('isSiswa');
+Route::post('/siswa/absen', [AttdetailController::class, 'create'])->name('absen')->middleware('isSiswa');
+
+Route::get('/siswa/absensi', [AttdetailController::class, 'index'])->name('absensi')->middleware('isSiswa');
 
 // Halaman Guru
-Route::get('/guru/absensi-siswa', [AttendanceController::class, 'index'])->name('absensi-siswa')->middleware('isGuru');
+Route::get('/guru/absensi-siswa', function () {
+    return view('guru/dataAbsensi');
+})->name('absensi-siswa')->middleware('isGuru');
 
 Route::get('/guru/data-siswa', function () {
     return view('guru/dataSiswa');
