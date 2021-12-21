@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AttendanceController;
+use App\Models\Attendance;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,18 +22,17 @@ Route::get('/', function () {
 // Halaman siswa
 Route::get('/siswa/absen', function () {
     return view('siswa/absen');
-})->name('absen');
+})->name('absen')->middleware('isSiswa');
 Route::get('/siswa/absensi', function () {
     return view('siswa/absensi');
-})->name('absensi');
+})->name('absensi')->middleware('isSiswa');
 
 // Halaman Guru
-Route::get('/guru/absensi-siswa', function () {
-    return view('guru/dataAbsensi');
-})->name('absensi-siswa');
+Route::get('/guru/absensi-siswa', [AttendanceController::class, 'index'])->name('absensi-siswa')->middleware('isGuru');
+
 Route::get('/guru/data-siswa', function () {
-    return view('siswa/dataSiswa');
-})->name('data-siswa');
+    return view('guru/dataSiswa');
+})->name('data-siswa')->middleware('isGuru');
 
 
 Route::get('/dashboard', function () {

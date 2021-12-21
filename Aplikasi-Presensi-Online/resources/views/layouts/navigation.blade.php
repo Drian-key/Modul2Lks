@@ -17,7 +17,7 @@
                     </x-nav-link>
                 </div>
 
-                {{-- Siswa --}}
+                @can('siswa')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('absen')" :active="request()->routeIs('absen')" style="text-decoration: none">
                         {{ __('Absen') }}
@@ -28,8 +28,12 @@
                         {{ __('Absensi') }}
                     </x-nav-link>
                 </div>
+                @endcan
+                {{-- Siswa --}}
+                
 
                 {{-- guru --}}
+                @can('guru')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('absensi-siswa')" :active="request()->routeIs('absensi-siswa')" style="text-decoration: none">
                         {{ __('Absensi siswa') }}
@@ -40,6 +44,8 @@
                         {{ __('Data siswa') }}
                     </x-nav-link>
                 </div>
+                @endcan
+                
             </div>
 
             <!-- Settings Dropdown -->
@@ -90,6 +96,25 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" style="text-decoration: none">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+
+            @can('siswa')
+            <x-responsive-nav-link :href="route('absen')" :active="request()->routeIs('absen')" style="text-decoration: none">
+                {{ __('Absen') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('absensi')" :active="request()->routeIs('absensi')" style="text-decoration: none">
+                {{ __('Absensi') }}
+            </x-responsive-nav-link>
+            @endcan            
+            
+            @can('guru')
+            <x-responsive-nav-link :href="route('absensi-siswa')" :active="request()->routeIs('absensi-siswa')" style="text-decoration: none">
+                {{ __('absensi-siswa') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('data-siswa')" :active="request()->routeIs('data-siswa')" style="text-decoration: none">
+                {{ __('data-siswa') }}
+            </x-responsive-nav-link>
+            @endcan
+            
         </div>
 
         <!-- Responsive Settings Options -->
