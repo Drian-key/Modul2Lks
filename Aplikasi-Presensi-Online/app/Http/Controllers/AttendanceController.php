@@ -12,6 +12,12 @@ class AttendanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function indexGuru(){
+        return view('guru/dataAbsensi', [
+            'absensis' => Attendance::latest()->get()
+        ]);
+    }
+
     public function index()
     {
         return view('siswa/absen', [

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AttdetailController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\UserController;
 use App\Models\Attdetail;
 use App\Models\Attendance;
 use Illuminate\Support\Facades\Route;
@@ -29,13 +30,11 @@ Route::get('/siswa/absensi', [AttdetailController::class, 'index'])->name('absen
 Route::get('/siswa/cetak-absen-siswa', [AttdetailController::class, 'indexCetak'])->name('data-siswa')->middleware('isSiswa');
 
 // Halaman Guru
-Route::get('/guru/absensi-siswa', function () {
-    return view('guru/dataAbsensi');
-})->name('absensi-siswa')->middleware('isGuru');
+Route::get('/guru/absensi-siswa', [AttendanceController::class, 'indexGuru'])->name('absensi-siswa')->middleware('isGuru');
 
-Route::get('/guru/data-siswa', function () {
-    return view('guru/dataSiswa');
-})->name('data-siswa')->middleware('isGuru');
+Route::get('/guru/data-siswa', [UserController::class, 'index'])->name('data-siswa')->middleware('isGuru');
+
+Route::get('/guru/absensi-siswa-rekap', [AttdetailController::class, 'indexGuru'])->middleware('isGuru');
 
 
 Route::get('/dashboard', function () {

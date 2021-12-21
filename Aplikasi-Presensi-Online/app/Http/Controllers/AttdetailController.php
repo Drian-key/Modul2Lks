@@ -13,7 +13,14 @@ class AttdetailController extends Controller
      *
      * @return \Illuminate\Http\Response
      */ 
-    
+
+    public function indexGuru()
+    {
+        return view('siswa/absensi', [
+            'absens' => Attdetail::latest()->get()
+        ]);
+    }
+
     public function indexCetak()
     {
         $id = auth()->user()->id;
@@ -24,8 +31,6 @@ class AttdetailController extends Controller
     }
     public function index()
     {
-        $id = auth()->user()->id;
-        
         return view('siswa/absensi', [
             'absens' => Attdetail::latest()->get()
         ]);
