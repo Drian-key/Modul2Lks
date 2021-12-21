@@ -16,6 +16,30 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+
+                {{-- Siswa --}}
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('absen')" :active="request()->routeIs('absen')" style="text-decoration: none">
+                        {{ __('Absen') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('absensi')" :active="request()->routeIs('absensi')" style="text-decoration: none">
+                        {{ __('Absensi') }}
+                    </x-nav-link>
+                </div>
+
+                {{-- guru --}}
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('absensi-siswa')" :active="request()->routeIs('absensi-siswa')" style="text-decoration: none">
+                        {{ __('Absensi siswa') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('data-siswa')" :active="request()->routeIs('data-siswa')" style="text-decoration: none">
+                        {{ __('Data siswa') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
