@@ -10,4 +10,17 @@ class Attendance extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
+    public function user(){
+        return $this->belongsTo(User::class, 'teacher_id');
+    }
+
+    public function Classe(){
+        return $this->belongsTo(Classe::class, 'class_id');
+    }
+
+    public function Subject(){
+        return $this->belongsTo(Subject::class, 'subject_id');
+    }
+
+
 }

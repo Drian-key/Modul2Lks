@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Attendance::create([
-            'student_id' => 1,
+            'teacher_id' => 1,
             'class_id' => 1,
             'subject_id' => 1,
             'topic' => 'Silahkan di isi',
